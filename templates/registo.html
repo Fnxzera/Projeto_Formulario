@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Formulário de Cadastro</title>
+    <link rel="stylesheet" href="/static/registo.css">
+    <link href="/static/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <header>
+        <h1 class="titulo">Preencha o Formulário</h1>
+    </header>
+    <main>
+
+        <div class="card">
+            <form action="/registo" method="post">
+                <div class="container">
+                    <div class="info">
+                        <label>NOME: </label>
+                        <label>APELIDO: </label>
+                        <label>EMAIL: </label>
+                        <label>CONFIRME O EMAIL: </label>
+                        <label>TELEFONE: </label>
+                    </div>
+                    <div class="dados">
+
+                        <input type="text" placeholder="Primeiro Nome" name="cliente-nome" >
+                        <input type="text" placeholder="Apelido Completo" name="cliente-apelido" >
+                        <input type="text" placeholder="Email" name="cliente-email" >
+                        <input type="text" placeholder="Confirme o Email" name="confirm-email">
+                        <input type="tel" id="telefone" name="cliente-telefone" required>
+
+                    </div>
+
+                </div>
+                <button class="btn-form">ENVIAR</button>
+                {% set mensagem = get_flashed_messages() %}
+                {% if mensagem %}
+                <div class="flash_alerta">
+                    {{mensagem[0]}}
+                </div>
+                {% endif %}
+            </form>
+        </div>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <script>
+        const input = document.querySelector("#telefone");
+        window.intlTelInput(input, {
+            initialCountry: "pt", 
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js" // Necessário para validação e formatação
+        });
+    </script>
+    </main>
+</body>
+
+</html>
